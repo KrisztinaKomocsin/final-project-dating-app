@@ -1,12 +1,7 @@
 import { css } from '@emotion/react';
 
 const footerStyles = css`
-  padding: 10px;
-  background-color: #b3dee2;
-  height: 100px;
-  width: 100vw;
-  color: #571089;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Emilys candy;
   font-weight: bold;
 `;
 
