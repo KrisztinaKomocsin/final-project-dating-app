@@ -62,7 +62,7 @@ export default function Register(props: Props) {
 
       <main>
         <h1>PurrMatch</h1>
-        <h2>Sign Up!</h2>
+        <h2>Registration</h2>
 
         <label>
           <input

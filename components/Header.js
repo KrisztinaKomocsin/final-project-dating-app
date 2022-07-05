@@ -6,25 +6,29 @@ import logo from '../public/logo.jpg';
 const headerStyles = css`
   width: 100%;
   font-family: Emilys candy;
+  background-color: red;
 `;
 
 const logoStyle = css`
   position: relative;
   animation: mymove 5s infinite;
+  width: 20%;
 
   @keyframes mymove {
     from {
       left: 0px;
     }
     to {
-      left: 200px;
+      left: 150px;
     }
   }
 `;
 
 const navLinks = css`
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
+  margin-right: 20px;
+  font-size: 20px;
 `;
 
 export default function Header(props) {

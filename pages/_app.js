@@ -36,6 +36,8 @@ export default function App({ Component, pageProps }) {
 
           * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
           }
         `}
       />
