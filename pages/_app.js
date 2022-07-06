@@ -1,6 +1,7 @@
 import { css, Global } from '@emotion/react';
 import { useCallback, useEffect, useState } from 'react';
-import Layout from '../components/Layout';
+
+// import Layout from '../components/Layout';
 
 export default function App({ Component, pageProps }) {
   const [user, setUser] = useState();
@@ -41,9 +42,8 @@ export default function App({ Component, pageProps }) {
           }
         `}
       />
-      <Layout user={user}>
-        <Component {...pageProps} refreshUserProfile={refreshUserProfile} />
-      </Layout>
+
+      <Component {...pageProps} refreshUserProfile={refreshUserProfile} />
     </>
   );
 }

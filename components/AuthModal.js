@@ -8,27 +8,26 @@ const authForm = css`
   font-weight: bold;
   font-size: 15px;
   letter-spacing: 0.5px;
-  position: relative;
-  left: 550px;
-  width: 400px;
-  height: 400px;
+  position: absolute;
+  top: 50px;
+  left: 570px;
+  max-width: 400px;
+  height: 500px;
   background-color: #fff;
   border-radius: 20px;
 
   button {
     float: right;
-    position: absolute;
-    right: 0;
   }
 
   p {
-    padding-top: 30px;
+    padding: 20px;
   }
 `;
 
 const authImage = css`
   position: absolute;
-  top: 120px;
+  top: 200px;
 `;
 
 export default function AuthModal({ setShowModal }) {

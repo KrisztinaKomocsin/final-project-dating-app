@@ -2,13 +2,18 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import { useState } from 'react';
 import AuthModal from '../components/AuthModal';
+import Layout from '../components/Layout';
+
+const wrapper = css`
+  background: url('homepage.jpg');
+  background-position: center;
+`;
 
 const mainPage = css`
   font-family: Emilys candy;
   text-align: center;
-  background-color: blanchedalmond;
-  width: 100%;
   height: 100vh;
+  position: relative;
 
   button {
     color: #fff;
@@ -16,9 +21,12 @@ const mainPage = css`
     font-size: 10px;
     font-family: Emilys candy;
     background: linear-gradient(45deg, #924694, #fc46e7);
-    padding: 10px;
+    padding: 20px;
     border-radius: 50px;
     border: none;
+    position: absolute;
+    top: 550px;
+    left: 700px;
 
     :hover {
       background: linear-gradient(260deg, #924694, #fc46e7);
@@ -34,21 +42,22 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <Head>
-        <title>PurrMatch</title>
-        <meta
-          name="description"
-          content="Home page of the dating application"
-        />
-      </Head>
+    <div css={wrapper}>
+      <Layout>
+        <Head>
+          <title>PurrMatch</title>
+          <meta
+            name="description"
+            content="Home page of the dating application"
+          />
+        </Head>
 
-      <main css={mainPage}>
-        <h1>PurrMatch</h1>
-        <button onClick={handleClick}>Create Account</button>
+        <main css={mainPage}>
+          <button onClick={handleClick}>Create Account</button>
 
-        {showModal && <AuthModal setShowModal={setShowModal} />}
-      </main>
+          {showModal && <AuthModal setShowModal={setShowModal} />}
+        </main>
+      </Layout>
     </div>
   );
 }

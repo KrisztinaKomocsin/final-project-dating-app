@@ -53,7 +53,7 @@ export default function Login(props: Props) {
     } else {
       // redirect user to user profile
       await props.refreshUserProfile();
-      await router.push(`/`);
+      await router.push(`/users/private-profile`);
     }
   }
 
