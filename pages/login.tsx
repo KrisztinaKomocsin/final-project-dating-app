@@ -1,9 +1,14 @@
+import { css } from '@emotion/react';
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { LoginResponseBody } from './api/login';
+
+const loginWrapper = css`
+  font-family: Emilys candy;
+`;
 
 // import {errorStyles} from './register';
 
@@ -53,7 +58,7 @@ export default function Login(props: Props) {
     } else {
       // redirect user to user profile
       await props.refreshUserProfile();
-      await router.push(`/users/private-profile`);
+      await router.push(`/dashboard`);
     }
   }
 
@@ -64,8 +69,7 @@ export default function Login(props: Props) {
         <meta name="Login" content="Login a user" />
       </Head>
 
-      <Link href="/">Home</Link>
-      <main>
+      <main css={loginWrapper}>
         <h1>PurrMatch</h1>
         <h2>Login</h2>
 
@@ -80,6 +84,7 @@ export default function Login(props: Props) {
         </label>
         <label>
           <input
+            type="password"
             value={password}
             onChange={(event) => {
               setPassword(event.currentTarget.value);
@@ -91,6 +96,9 @@ export default function Login(props: Props) {
         {errors.map((error) => (
           <span key={`error-${error.message}`}>{error.message} </span>
         ))}
+        <div>
+          <Link href="/">Back to the homepage</Link>
+        </div>
       </main>
     </div>
   );

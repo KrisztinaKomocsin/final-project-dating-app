@@ -25,7 +25,7 @@ const mainPage = css`
     border-radius: 50px;
     border: none;
     position: absolute;
-    top: 550px;
+    top: 600px;
     left: 700px;
 
     :hover {

@@ -8,17 +8,14 @@ const authForm = css`
   font-weight: bold;
   font-size: 15px;
   letter-spacing: 0.5px;
-  position: absolute;
+  position: relative;
   top: 50px;
   left: 570px;
   max-width: 400px;
   height: 500px;
   background-color: #fff;
   border-radius: 20px;
-
-  button {
-    float: right;
-  }
+  background-color: #f8f8ff;
 
   p {
     padding: 20px;
@@ -28,6 +25,13 @@ const authForm = css`
 const authImage = css`
   position: absolute;
   top: 200px;
+  // transform: rotate(0deg);
+  // transform-origin: center bottom;
+`;
+
+const closeX = css`
+  position: absolute;
+  top: 0;
 `;
 
 export default function AuthModal({ setShowModal }) {
@@ -37,7 +41,10 @@ export default function AuthModal({ setShowModal }) {
 
   return (
     <div css={authForm}>
-      <button onClick={handleClick}>X</button>
+      <button css={closeX} onClick={handleClick}>
+        X
+      </button>
+
       <div>
         <p>
           By clicking "Create Account", you agree to our terms.

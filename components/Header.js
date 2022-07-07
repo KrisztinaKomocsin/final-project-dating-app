@@ -6,7 +6,7 @@ import logo from '../public/logo.jpg';
 const headerStyles = css`
   width: 100%;
   font-family: Emilys candy;
-  color: #551a8b;
+  color: #000;
 
   h1 {
     text-align: center;
@@ -31,8 +31,14 @@ const logoStyle = css`
 `;
 const navLinks = css`
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   margin-right: 20px;
+  width: 30vw;
+`;
+
+const wrapLinks = css`
+  display: flex;
+  justify-content: flex-end;
 `;
 export default function Header(props) {
   return (
@@ -47,10 +53,12 @@ export default function Header(props) {
         />
         PurrMatch{' '}
       </div>
-      <div css={navLinks}>
-        <Link href="/dating-securely">Dating Securely</Link>
-        <Link href="/login">Login</Link>
-        <Link href="/users/private-profile">Profile</Link>
+      <div css={wrapLinks}>
+        <div css={navLinks}>
+          <Link href="/dating-securely">Dating Securely</Link>
+          <Link href="/login">Login</Link>
+          <Link href="/users/private-profile">Profile</Link>
+        </div>
       </div>
     </header>
   );

@@ -50,7 +50,7 @@ export default function Register(props: Props) {
       await router.push(returnTo);
     } else {
       await props.refreshUserProfile();
-      await router.push(`/`);
+      await router.push(`/form`);
     }
   }
 
@@ -76,6 +76,7 @@ export default function Register(props: Props) {
         </label>
         <label>
           <input
+            type="password"
             value={password}
             onChange={(event) => {
               setPassword(event.currentTarget.value);
