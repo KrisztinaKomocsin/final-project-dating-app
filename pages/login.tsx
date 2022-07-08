@@ -6,11 +6,63 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { LoginResponseBody } from './api/login';
 
+// import {errorStyles} from './register';
+
 const loginWrapper = css`
-  font-family: Emilys candy;
+  display: flex;
+  justify-content: space-between;
 `;
 
-// import {errorStyles} from './register';
+const loginStyle = css`
+  display: flex;
+  flex-direction: column;
+  font-family: Emilys candy;
+  margin: 20px 200px;
+
+  h1,
+  h2 {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  input {
+    margin: 10px 0;
+    font-size: 15px;
+    border-radius: 20px;
+    padding: 10px;
+    width: 300px;
+  }
+
+  button {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: Emilys candy;
+    background: linear-gradient(45deg, #924694, #fc46e7);
+    padding: 20px;
+    border-radius: 50px;
+    border: none;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100px;
+    :hover {
+      background: linear-gradient(260deg, #924694, #fc46e7);
+    }
+  }
+`;
+
+const loginPhoto = css`
+  background: url('login.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 70vw;
+  height: 100vh;
+`;
 
 type Props = {
   refreshUserProfile: () => Promise<void>;
@@ -70,35 +122,38 @@ export default function Login(props: Props) {
       </Head>
 
       <main css={loginWrapper}>
-        <h1>PurrMatch</h1>
-        <h2>Login</h2>
+        <div css={loginStyle}>
+          <h1>PurrMatch</h1>
+          <h2>Login</h2>
 
-        <label>
-          <input
-            value={username}
-            onChange={(event) => {
-              setUsername(event.currentTarget.value);
-            }}
-            placeholder="Username"
-          />
-        </label>
-        <label>
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => {
-              setPassword(event.currentTarget.value);
-            }}
-            placeholder="Password"
-          />
-        </label>
-        <button onClick={() => loginHandler()}>Login</button>
-        {errors.map((error) => (
-          <span key={`error-${error.message}`}>{error.message} </span>
-        ))}
-        <div>
-          <Link href="/">Back to the homepage</Link>
+          <label>
+            <input
+              value={username}
+              onChange={(event) => {
+                setUsername(event.currentTarget.value);
+              }}
+              placeholder="Username"
+            />
+          </label>
+          <label>
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.currentTarget.value);
+              }}
+              placeholder="Password"
+            />
+          </label>
+          <button onClick={() => loginHandler()}>Login</button>
+          {errors.map((error) => (
+            <span key={`error-${error.message}`}>{error.message} </span>
+          ))}
+          <div>
+            <Link href="/">Back to the homepage</Link>
+          </div>
         </div>
+        <div css={loginPhoto} />
       </main>
     </div>
   );

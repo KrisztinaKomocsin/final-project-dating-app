@@ -1,5 +1,28 @@
+import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
+
+const datingStyle = css`
+  background-color: #924694;
+  font-family: Emilys candy;
+  color: #fff;
+  width: 100vw;
+  height: 100vh;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 50px;
+  }
+
+  p {
+    text-align: center;
+    word-spacing: 0.5;
+    line-height: 2.5;
+    font-size: 20px;
+    margin-bottom: 100px;
+  }
+`;
 
 export default function DatingSecurely() {
   return (
@@ -10,7 +33,7 @@ export default function DatingSecurely() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main css={datingStyle}>
         <h1>Dating Securely</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper
@@ -24,7 +47,9 @@ export default function DatingSecurely() {
           vulputate a fermentum, varius blandit nunc. Rutrum metus urna potenti
           proin amet, leo, nulla purus. Sit pharetra pharetra maecenas sem
           tellus nunc tincidunt at. Dolor diam cras fames tellus.
-          <br /> With love and paws, Purr-Match Team
+          <br />
+          <br />
+          <strong>With love and paws, Purr-Match Team</strong>
         </p>
         <Link href="/">Back to the homepage</Link>
       </main>

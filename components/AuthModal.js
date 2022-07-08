@@ -9,7 +9,7 @@ const authForm = css`
   font-size: 15px;
   letter-spacing: 0.5px;
   position: relative;
-  top: 50px;
+  top: 30px;
   left: 570px;
   max-width: 400px;
   height: 500px;
@@ -31,7 +31,7 @@ const authImage = css`
 
 const closeX = css`
   position: absolute;
-  top: 0;
+  top: 200px;
 `;
 
 export default function AuthModal({ setShowModal }) {

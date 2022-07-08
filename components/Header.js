@@ -6,11 +6,14 @@ import logo from '../public/logo.jpg';
 const headerStyles = css`
   width: 100%;
   font-family: Emilys candy;
-  color: #000;
+  color: #551a8b;
+  text-shadow: 2px 2px 8px #fc46e7;
 
   h1 {
     text-align: center;
-    font-size: 30px;
+    font-size: 50px;
+    color: #551a8b;
+    text-shadow: 2px 2px 8px #fc46e7;
   }
 `;
 
@@ -33,13 +36,17 @@ const navLinks = css`
   display: flex;
   justify-content: space-between;
   margin-right: 20px;
-  width: 30vw;
+  width: 20vw;
+  :hover {
+    background: #fc46e7;
+  }
 `;
 
 const wrapLinks = css`
   display: flex;
   justify-content: flex-end;
 `;
+
 export default function Header(props) {
   return (
     <header css={headerStyles}>
@@ -57,7 +64,6 @@ export default function Header(props) {
         <div css={navLinks}>
           <Link href="/dating-securely">Dating Securely</Link>
           <Link href="/login">Login</Link>
-          <Link href="/users/private-profile">Profile</Link>
         </div>
       </div>
     </header>

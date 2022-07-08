@@ -2,6 +2,11 @@ import { css } from '@emotion/react';
 import { useState } from 'react';
 
 const formWrapper = css`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const formStyle = css`
   font-family: Emilys candy;
 
   h1 {
@@ -11,7 +16,6 @@ const formWrapper = css`
   section {
     display: flex;
     flex-direction: column;
-    margin: 0px 100px;
     padding: 20px;
     width: 300px;
   }
@@ -42,13 +46,16 @@ const formButton = css`
   padding: 20px;
   border-radius: 50px;
   border: none;
-  position: absolute;
-  bottom: 100px;
-  right: 70px;
+  :hover {
+    background: linear-gradient(260deg, #924694, #fc46e7);
+  }
 `;
 
 const formPhoto = css`
-  background: url('homepage.jpg');
+  background: url('form.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 40vw;
   height: 100vh;
 `;
@@ -64,108 +71,107 @@ export default function Form() {
   const [description, setDescription] = useState();
 
   return (
-    <div>
-      <div css={formPhoto}>
-        <div css={formWrapper}>
-          <h1>CREATE ACCOUNT</h1>
+    <div css={formWrapper}>
+      <div css={formPhoto} />
+      <div css={formStyle}>
+        <h1>CREATE ACCOUNT</h1>
 
-          <form>
-            <section>
-              <label htmlFor="first_name">First Name</label>
-              <input
-                placeholder="Please type"
-                value={firstName}
-                onChange={(event) => {
-                  setFirstName(event.currentTarget.value);
-                }}
-              />
+        <form>
+          <section>
+            <label htmlFor="first_name">First Name</label>
+            <input
+              placeholder="Please type"
+              value={firstName}
+              onChange={(event) => {
+                setFirstName(event.currentTarget.value);
+              }}
+            />
 
-              <label htmlFor="last_name">Last Name</label>
-              <input
-                placeholder="Please type"
-                value={lastName}
-                onChange={(event) => {
-                  setLastName(event.currentTarget.value);
-                }}
-              />
+            <label htmlFor="last_name">Last Name</label>
+            <input
+              placeholder="Please type"
+              value={lastName}
+              onChange={(event) => {
+                setLastName(event.currentTarget.value);
+              }}
+            />
 
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                placeholder="Please type"
-                value={email}
-                onChange={(event) => {
-                  setEmail(event.currentTarget.value);
-                }}
-              />
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              placeholder="Please type"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.currentTarget.value);
+              }}
+            />
 
-              <label htmlFor="location">Location</label>
-              <input
-                placeholder="Please type"
-                value={location}
-                onChange={(event) => {
-                  setLocation(event.currentTarget.value);
-                }}
-              />
+            <label htmlFor="location">Location</label>
+            <input
+              placeholder="Please type"
+              value={location}
+              onChange={(event) => {
+                setLocation(event.currentTarget.value);
+              }}
+            />
 
-              <label htmlFor="dob">Birthday</label>
-              <input
-                type="date"
-                placeholder="DD/MM/YYYY"
-                value={dateOfBirth}
-                onChange={(event) => {
-                  setDateOfBirth(event.currentTarget.value);
-                }}
-              />
+            <label htmlFor="dob">Birthday</label>
+            <input
+              type="date"
+              placeholder="DD/MM/YYYY"
+              value={dateOfBirth}
+              onChange={(event) => {
+                setDateOfBirth(event.currentTarget.value);
+              }}
+            />
 
-              <label htmlFor="gender">I am:</label>
-              <select
-                placeholder="Please choose"
-                value={gender}
-                onChange={(event) => {
-                  setGender(event.currentTarget.value);
-                }}
-              >
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="other">Other</option>
-              </select>
-              <br />
-              <label htmlFor="interest">I am looking for:</label>
-              <select
-                placeholder="Please choose"
-                value={interest}
-                onChange={(event) => {
-                  setInterest(event.currentTarget.value);
-                }}
-              >
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="more">Everyone</option>
-              </select>
-            </section>
+            <label htmlFor="gender">I am:</label>
+            <select
+              placeholder="Please choose"
+              value={gender}
+              onChange={(event) => {
+                setGender(event.currentTarget.value);
+              }}
+            >
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+            <br />
+            <label htmlFor="interest">I am looking for:</label>
+            <select
+              placeholder="Please choose"
+              value={interest}
+              onChange={(event) => {
+                setInterest(event.currentTarget.value);
+              }}
+            >
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="more">Everyone</option>
+            </select>
+          </section>
 
-            <section>
-              <label htmlFor="description">About me</label>
-              <textarea
-                maxlength="300"
-                rows="5"
-                placeholder="Please type"
-                value={description}
-                onChange={(event) => {
-                  setDescription(event.currentTarget.value);
-                }}
-              />
-            </section>
-            <section>
-              <div>For photos</div>
-            </section>
+          <section>
+            <label htmlFor="description">About me</label>
+            <textarea
+              maxlength="300"
+              rows="5"
+              placeholder="Please type"
+              value={description}
+              onChange={(event) => {
+                setDescription(event.currentTarget.value);
+              }}
+            />
+          </section>
+          <section>
+            <div>For photos</div>
+          </section>
 
-            <button css={formButton} type="Submit">
-              Submit
-            </button>
-          </form>
-        </div>
+          <button css={formButton} type="Submit">
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   );
