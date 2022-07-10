@@ -8,7 +8,7 @@ const authForm = css`
   font-weight: bold;
   font-size: 15px;
   letter-spacing: 0.5px;
-  position: relative;
+  position: absolute;
   top: 30px;
   left: 570px;
   max-width: 400px;
@@ -25,13 +25,12 @@ const authForm = css`
 const authImage = css`
   position: absolute;
   top: 200px;
-  // transform: rotate(0deg);
-  // transform-origin: center bottom;
 `;
 
 const closeX = css`
   position: absolute;
-  top: 200px;
+  top: 0;
+  right: 0;
 `;
 
 export default function AuthModal({ setShowModal }) {
@@ -41,21 +40,21 @@ export default function AuthModal({ setShowModal }) {
 
   return (
     <div css={authForm}>
-      <button css={closeX} onClick={handleClick}>
-        X
-      </button>
-
       <div>
         <p>
           By clicking "Create Account", you agree to our terms.
           <br /> Learn how we process your data in our Privacy Policy.
         </p>
         <br />
+
         <Link href="/register">Registration</Link>
       </div>
       <div css={authImage}>
         <Image src={auth} alt="cat with laptop" width="400" height="250" />
       </div>
+      <button css={closeX} onClick={handleClick}>
+        X
+      </button>
     </div>
   );
 }

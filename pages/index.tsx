@@ -14,23 +14,23 @@ const mainPage = css`
   text-align: center;
   height: 100vh;
   position: relative;
+`;
 
-  button {
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 10px;
-    font-family: Emilys candy;
-    background: linear-gradient(45deg, #924694, #fc46e7);
-    padding: 20px;
-    border-radius: 50px;
-    border: none;
-    position: absolute;
-    top: 550px;
-    left: 700px;
+const createButton = css`
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-family: Emilys candy;
+  background: linear-gradient(45deg, #924694, #fc46e7);
+  padding: 20px;
+  border-radius: 50px;
+  border: none;
+  position: absolute;
+  top: 550px;
+  left: 700px;
 
-    :hover {
-      background: linear-gradient(260deg, #924694, #fc46e7);
-    }
+  :hover {
+    background: linear-gradient(260deg, #924694, #fc46e7);
   }
 `;
 
@@ -53,7 +53,9 @@ export default function Home() {
         </Head>
 
         <main css={mainPage}>
-          <button onClick={handleClick}>Create Account</button>
+          <button css={createButton} onClick={handleClick}>
+            Create Account
+          </button>
 
           {showModal && <AuthModal setShowModal={setShowModal} />}
         </main>

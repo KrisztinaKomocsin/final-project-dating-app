@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { RegisterResponseBody } from './api/register';
@@ -44,6 +45,7 @@ const registerStyle = css`
     border-radius: 50px;
     border: none;
     margin-top: 50px;
+    margin-bottom: 50px;
     width: 100px;
     :hover {
       background: linear-gradient(260deg, #924694, #fc46e7);
@@ -144,8 +146,11 @@ export default function Register(props: Props) {
           {errors.map((error) => (
             <span key={`error-${error.message}`}>{error.message} </span>
           ))}
-        </div>
 
+          <div>
+            <Link href="/">Back to the homepage</Link>
+          </div>
+        </div>
         <div css={registerPhoto} />
       </main>
     </div>

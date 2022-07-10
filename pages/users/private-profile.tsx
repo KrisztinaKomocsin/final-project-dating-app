@@ -15,9 +15,7 @@ export default function UserDetail(props: Props) {
       </Head>
 
       <main>
-        <h1>
-          User #{props.user.id} (username: {props.user.username})
-        </h1>
+        <h1>Are you ready for the purr-fect match, {props.user.username}?</h1>
         <div>id: {props.user.id}</div>
         <div>username: {props.user.username}</div>
       </main>

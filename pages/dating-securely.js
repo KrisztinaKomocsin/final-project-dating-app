@@ -6,11 +6,13 @@ const datingStyle = css`
   background-color: #924694;
   font-family: Emilys candy;
   color: #fff;
+  background: linear-gradient(45deg, #924694, #fc46e7);
   width: 100vw;
   height: 100vh;
 
   h1 {
     text-align: center;
+    padding-top: 50px;
     margin-bottom: 50px;
     font-size: 50px;
   }
@@ -20,7 +22,16 @@ const datingStyle = css`
     word-spacing: 0.5;
     line-height: 2.5;
     font-size: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 100px;
+  }
+`;
+
+const datingLink = css`
+  margin-left: 20px;
+  :hover {
+    text-shadow: 2px 2px 8px #fff;
   }
 `;
 
@@ -51,7 +62,9 @@ export default function DatingSecurely() {
           <br />
           <strong>With love and paws, Purr-Match Team</strong>
         </p>
-        <Link href="/">Back to the homepage</Link>
+        <div css={datingLink}>
+          <Link href="/">Back to the homepage</Link>
+        </div>
       </main>
     </div>
   );
