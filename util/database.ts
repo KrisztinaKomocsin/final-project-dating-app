@@ -6,10 +6,21 @@ config();
 
 const sql = postgres();
 
+export type UserProfile = {
+  user_id: number;
+  gender: string;
+  interest: string;
+  first_name: string;
+  last_name: string;
+  date_of_birth: string;
+  location: string;
+  email: string;
+  description: string;
+};
+
 type User = {
   id: number;
   username: string;
-  email: string;
 };
 
 type UserWithPasswordHash = User & {
@@ -164,4 +175,44 @@ export async function deleteExpiredSessions() {
   `;
 
   return sessions.map((session) => camelcaseKeys(session));
+}
+
+export async function createUserProfile(
+  user_id: number,
+  gender: string,
+  interest: string,
+  first_name: string,
+  last_name: string,
+  date_of_birth: string,
+  location: string,
+  email: string,
+  description: string,
+  // gender_id: number | undefined,
+  // location_id: number | undefined,
+  // interest_id: number | undefined,
+) {
+  const [userProfile] = await sql`
+  INSERT INTO user_profiles
+    (user_id, gender, interest,first_name, last_name,date_of_birth, location, email, description)
+  VALUES
+  (${user_id}, ${gender}, ${interest} ,${first_name}, ${last_name} ,${date_of_birth}, ${location}, ${email}, ${description})
+  RETURNING
+   *
+  `;
+
+  return camelcaseKeys(userProfile);
+}
+
+export async function getUserProfileByUserId(userId: number) {
+  if (!userId) return undefined;
+
+  const [userProfile] = await sql`
+    SELECT
+      *
+    FROM
+    user_profiles
+    WHERE
+      user_id = ${userId}
+  `;
+  return userProfile && camelcaseKeys(userProfile);
 }

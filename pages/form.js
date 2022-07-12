@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { getUserByValidSessionToken } from '../util/database';
 
 const formWrapper = css`
   display: flex;
@@ -77,14 +78,14 @@ const sectionWrapper = css`
   margin-bottom: 30px;
 `;
 
-export default function Form(props) {
+export default function Form() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [location, setLocation] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  const [gender, setGender] = useState('');
-  const [interest, setInterest] = useState('');
+  const [gender, setGender] = useState('female');
+  const [interest, setInterest] = useState('female');
   const [description, setDescription] = useState('');
   const [errors, setErrors] = useState([]);
   const router = useRouter();
@@ -103,6 +104,7 @@ export default function Form(props) {
         dateOfBirth,
         gender,
         interest,
+        description,
       }),
     });
 
@@ -208,7 +210,7 @@ export default function Form(props) {
               <section>
                 <label htmlFor="description">About me</label>
                 <textarea
-                  maxlength="300"
+                  maxLength="300"
                   rows="5"
                   placeholder="Please type"
                   value={description}
@@ -233,7 +235,20 @@ export default function Form(props) {
   );
 }
 
-export function getServerSideProps(context) {
+export async function getServerSideProps(context) {
+  const user = await getUserByValidSessionToken(
+    context.req.cookies.sessionToken,
+  );
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: `/`,
+        permanent: false,
+      },
+    };
+  }
+
   // Redirect from HTTP to HTTPS on Heroku
   if (
     context.req.headers.host &&
@@ -252,7 +267,3 @@ export function getServerSideProps(context) {
     props: {},
   };
 }
-
-/* label for description, but it's better on the user profile
-
-*/

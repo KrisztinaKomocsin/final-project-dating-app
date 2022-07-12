@@ -25,7 +25,7 @@ const chatImageContainer = css`
 `;
 // chat image width: 100%
 
-export default function ChatHeader() {
+export default function ChatHeader(props) {
   return (
     <div css={chatHeader}>
       <div css={chatProfile}>
