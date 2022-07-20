@@ -36,7 +36,9 @@ const formStyle = css`
   }
 
   textarea {
-    border: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 300px;
   }
 
   select {
@@ -87,8 +89,29 @@ export default function Form() {
   const [gender, setGender] = useState('female');
   const [interest, setInterest] = useState('female');
   const [description, setDescription] = useState('');
+  const [profilePicture, setProfilePicture] = useState('');
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const router = useRouter();
+
+  const uploadProfilePicture = async (event) => {
+    const files = event.currentTarget.files;
+    const formData = new FormData();
+    formData.append('file', files[0]);
+    formData.append('upload_preset', 'purrMatch');
+    // setLoading(true);
+    const response = await fetch(
+      'https://api.cloudinary.com/v1_1/komkri/upload',
+      {
+        method: 'POST',
+        body: formData,
+      },
+    );
+    const file = await response.json();
+    setProfilePicture(file.secure_url);
+    console.log('this is profile picture', file.secure_url);
+    setLoading(false);
+  };
 
   async function formHandler() {
     const formResponse = await fetch('/api/form', {
@@ -105,6 +128,7 @@ export default function Form() {
         gender,
         interest,
         description,
+        profilePicture,
       }),
     });
 
@@ -131,7 +155,7 @@ export default function Form() {
         <div css={formStyle}>
           <h1>CREATE ACCOUNT</h1>
 
-          <form>
+          <form onSubmit={(event) => event.preventDefault()}>
             <div css={sectionWrapper}>
               <section>
                 <label htmlFor="first_name">First Name</label>
@@ -210,24 +234,39 @@ export default function Form() {
               <section>
                 <label htmlFor="description">About me</label>
                 <textarea
-                  maxLength="300"
+                  maxLength="500"
                   rows="5"
-                  placeholder="Please type"
+                  placeholder="Please type...maximum 500
+                  characters"
                   value={description}
                   onChange={(event) => {
                     setDescription(event.currentTarget.value);
                   }}
                 />
               </section>
-              <section>Upload your photos!</section>
+              <section>
+                <div>
+                  Upload your photos!
+                  <input
+                    type="file"
+                    onChange={async (event) => {
+                      await uploadProfilePicture(event);
+                    }}
+                  />
+                </div>
+                <div>
+                  <img
+                    src={profilePicture}
+                    alt="profile"
+                    style={{ height: '100px', width: '100px' }}
+                  />
+                </div>
+              </section>
             </div>
 
             <button css={formButton} onClick={() => formHandler()}>
               Submit
             </button>
-            <div>
-              <Link href="/">Back to the homepage</Link>
-            </div>
           </form>
         </div>
       </main>
@@ -263,7 +302,11 @@ export async function getServerSideProps(context) {
     };
   }
 
+  const cloudinaryAPI = process.env.CLOUDINARY_NAME;
+
   return {
-    props: {},
+    props: {
+      cloudinaryAPI,
+    },
   };
 }

@@ -120,7 +120,7 @@ export default function Register(props: Props) {
 
       <main css={registerWrapper}>
         <div css={registerStyle}>
-          <h1>PurrMatch</h1>
+          <h1>Purrfect Match</h1>
           <h2>Registration</h2>
 
           <label>

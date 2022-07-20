@@ -123,7 +123,7 @@ export default function Login(props: Props) {
 
       <main css={loginWrapper}>
         <div css={loginStyle}>
-          <h1>PurrMatch</h1>
+          <h1>Purrfect Match</h1>
           <h2>Login</h2>
 
           <label>

@@ -11,9 +11,10 @@ exports.up = async (sql) => {
 			location varchar(40) NOT NULL,
 			email varchar(50) NOT NULL,
       description text NOT NULL,
-      gender_id integer REFERENCES genders (id) ON DELETE CASCADE,
-      location_id integer REFERENCES locations (id) ON DELETE CASCADE,
-      interest_id integer REFERENCES interests (id) ON DELETE CASCADE
+      profile_picture varchar(100) NOT NULL
+     --gender_id integer REFERENCES genders (id) ON DELETE CASCADE,
+     --location_id integer REFERENCES locations (id) ON DELETE CASCADE,
+     --interest_id integer REFERENCES interests (id) ON DELETE CASCADE
 
     )
   `;

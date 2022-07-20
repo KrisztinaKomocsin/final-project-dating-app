@@ -187,15 +187,13 @@ export async function createUserProfile(
   location: string,
   email: string,
   description: string,
-  // gender_id: number | undefined,
-  // location_id: number | undefined,
-  // interest_id: number | undefined,
+  profile_picture: string,
 ) {
   const [userProfile] = await sql`
   INSERT INTO user_profiles
-    (user_id, gender, interest,first_name, last_name,date_of_birth, location, email, description)
+    (user_id, gender, interest,first_name, last_name,date_of_birth, location, email, description, profile_picture)
   VALUES
-  (${user_id}, ${gender}, ${interest} ,${first_name}, ${last_name} ,${date_of_birth}, ${location}, ${email}, ${description})
+  (${user_id}, ${gender}, ${interest} ,${first_name}, ${last_name} ,${date_of_birth}, ${location}, ${email}, ${description}, ${profile_picture})
   RETURNING
    *
   `;
@@ -215,4 +213,26 @@ export async function getUserProfileByUserId(userId: number) {
       user_id = ${userId}
   `;
   return userProfile && camelcaseKeys(userProfile);
+}
+
+export async function getGenderedUser(interest: string) {
+  const genderMatches = await sql`
+    SELECT
+      *
+    FROM
+      user_profiles
+    WHERE gender = ${interest}
+    `;
+  return genderMatches.map((genderMatch) => camelcaseKeys(genderMatch));
+}
+
+export async function getLikedUser(liked_person_id: number) {
+  const likedMatches = await sql`
+    SELECT
+      *
+    FROM
+      liked_persons
+    WHERE liked_person_id = ${liked_person_id}
+    `;
+  return likedMatches.map((likedMatch) => camelcaseKeys(likedMatch));
 }

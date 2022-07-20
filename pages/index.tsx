@@ -26,7 +26,7 @@ const createButton = css`
   border-radius: 50px;
   border: none;
   position: absolute;
-  top: 550px;
+  top: 500px;
   left: 700px;
 
   :hover {

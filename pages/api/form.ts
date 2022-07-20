@@ -11,6 +11,7 @@ export default async function handler(
   // check the method to be POST
   if (req.method === 'POST') {
     const user = await getUserByValidSessionToken(req.cookies.sessionToken);
+    console.log(req.body);
 
     if (!user) {
       res.status(401).json({ errors: [{ message: 'User not found' }] });
@@ -28,6 +29,9 @@ export default async function handler(
       req.body.location,
       req.body.email,
       req.body.description,
+      req.body.profilePicture,
     );
+    res.status(401).json({ userProfile: userProfile });
+    return;
   }
 }

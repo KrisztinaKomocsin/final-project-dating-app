@@ -1,5 +1,6 @@
 import { css, Global } from '@emotion/react';
 import { useCallback, useEffect, useState } from 'react';
+import Layout from '../components/Layout';
 
 // import Layout from '../components/Layout';
 

@@ -1,146 +1,172 @@
 import { css } from '@emotion/react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import TinderCard from 'react-tinder-card';
-import ChatContainer from '../components/ChatContainer';
+import Nav from '../components/Nav';
+import catspaw from '../public/catspaw.jpg';
+import {
+  getGenderedUser,
+  getLikedUser,
+  getUserByValidSessionToken,
+  getUserProfileByUserId,
+} from '../util/database';
 
 const dashboardStyle = css`
   font-family: Emilys candy;
   display: flex;
   justify-content: space-between;
-`;
+  margin-top: 20px;
 
-const swipeContainer = css`
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-const swipe = css`
-  position: absolute;
-`;
-
-const cardContainer = css`
-  width: 400px;
-  height: 650px;
-`;
-
-const card = css`
-  width: 400px;
-  height: 650px;
-  box-shadow: 0px 0px 2px 0px #000;
-  border-radius: 20px;
-  background-size: cover;
-  background-position: center;
-
-  h3 {
+  h2 {
     text-align: center;
-    color: #000;
+    margin-bottom: 40px;
   }
 `;
 
-const swipeInfo = css`
-  position: absolute;
-  bottom: 0;
-  padding: 10px;
+const userDetails = css`
+  margin-top: 30px;
+  background-color: #924694;
+  border: 1px solid #000;
+  width: 40vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+
+  h1 {
+    text-align: center;
+    color: #000;
+    text-shadow: 2px 2px 5px #fff;
+  }
 `;
 
-export default function Dashboard() {
-  const characters = [
-    {
-      name: 'Richard Hendricks',
-      url: 'https://i.imgur.com/dc1PU8j.jpeg',
-    },
-    {
-      name: 'Erlich Bachman',
-      url: 'https://i.imgur.com/dc1PU8j.jpeg',
-    },
-    {
-      name: 'Monica Hall',
-      url: 'https://i.imgur.com/dc1PU8j.jpeg',
-    },
-    {
-      name: 'Jared Dunn',
-      url: 'https://i.imgur.com/dc1PU8j.jpeg',
-    },
-    {
-      name: 'Dinesh Chugtai',
-      url: 'https://i.imgur.com/dc1PU8j.jpeg',
-    },
-  ];
+const genderedUserStyle = css`
+  display: flex;
+  flex-flow: row wrap;
+  margin: 10px;
+  gap: 20px;
 
-  const [lastDirection, setLastDirection] = useState('');
+  h3 {
+    text-align: center;
+  }
 
-  const swiped = (direction, nameToDelete) => {
-    console.log('removing: ' + nameToDelete);
-    setLastDirection(direction);
-  };
+  li {
+    list-style-type: none;
+  }
+`;
 
-  const outOfFrame = (name) => {
-    console.log(name + ' left the screen!');
-  };
+const genderedUserImage = css`
+  border: 10px solid #000;
+  border-radius: 20px;
+`;
 
+const card = css`
+  display: flex;
+  flex-direction: column;
+`;
+
+const likeIcon = css`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const likeButton = css`
+  background-color: transparent;
+  border: none;
+`;
+
+export default function Dashboard(props) {
   return (
     <div>
+      <Nav />
       <div css={dashboardStyle}>
-        <ChatContainer />
         <div>
-          <Link href="/users/private-profile">Profile</Link>
-        </div>
-        <div css={swipeContainer}>
-          <div css={cardContainer}>
-            {characters.map((character) => (
-              <TinderCard
-                css={swipe}
-                key={character.name}
-                onSwipe={(dir) => swiped(dir, character.name)}
-                onCardLeftScreen={() => outOfFrame(character.name)}
-              >
-                <div
-                  style={{ backgroundImage: 'url(' + character.url + ')' }}
-                  css={card}
-                >
-                  <h3>{character.name}</h3>
-                </div>
-              </TinderCard>
-            ))}
-            <div css={swipeInfo}>
-              {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
-            </div>
+          <h2>Profiles</h2>
+          <div>
+            <ul css={genderedUserStyle}>
+              {props.matchedUsers
+                .filter((matchedUser) => {
+                  return matchedUser.interest === props.user.gender;
+                })
+                .map((matchedUser) => {
+                  return (
+                    <li key={matchedUser.id}>
+                      {!matchedUser.profilePicture ? (
+                        <div />
+                      ) : (
+                        <div css={card}>
+                          <Link href={`/users/${matchedUser.id}`}>
+                            <Image
+                              css={genderedUserImage}
+                              src={matchedUser.profilePicture}
+                              width="190"
+                              height="200"
+                            />
+                          </Link>
+                          <div css={likeIcon}>
+                            <h3>{matchedUser.firstName}</h3>
+                            <button css={likeButton}>
+                              <Image
+                                src={catspaw}
+                                alt="cat paw"
+                                width="50"
+                                height="50"
+                              />
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
+            </ul>
           </div>
+        </div>
+        <div css={userDetails}>
+          <h1>Are you ready for the purrfect match, {props.user.firstName}?</h1>
         </div>
       </div>
     </div>
   );
 }
-
-/*.cardContent {
-  width: 100%;
-  height: 100%;
-}
-
-.swipe:last-of-type {
-
-}*/
-/*const dashboardTop = css`
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  margin-bottom: 50px;
-
-  > a {
-    font-size: 20px;
-    color: #000;
-    text-shadow: 2px 2px 8px #fff;
-    text-decoration: underline;
-
-    :hover {
-      color: #551a8b;
-      text-shadow: 2px 2px 8px #fff;
-      text-decoration: none;
-    }
+export async function getServerSideProps(context) {
+  const user = await getUserByValidSessionToken(
+    context.req.cookies.sessionToken,
+  );
+  console.log(user);
+  if (!user) {
+    return {
+      redirect: {
+        destination: `/`,
+        permanent: false,
+      },
+    };
   }
-`;*/
+
+  const userProfile = await getUserProfileByUserId(user.id);
+  console.log(userProfile);
+
+  const getMatchedUsers = await getGenderedUser(userProfile.interest);
+
+  console.log('matchedUser', getMatchedUsers);
+
+  const getLikedMatches = await getLikedUser(user.id);
+
+  console.log('likedMatches', getLikedMatches);
+
+  if (!userProfile) {
+    return {
+      redirect: {
+        destination: `/form`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      user: userProfile,
+      matchedUsers: getMatchedUsers,
+      likedMatches: getLikedMatches,
+    },
+  };
+}

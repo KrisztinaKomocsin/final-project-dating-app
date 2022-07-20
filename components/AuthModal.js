@@ -9,7 +9,7 @@ const authForm = css`
   font-size: 15px;
   letter-spacing: 0.5px;
   position: absolute;
-  top: 30px;
+  top: 0px;
   left: 570px;
   max-width: 400px;
   height: 500px;
