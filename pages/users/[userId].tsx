@@ -227,7 +227,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   // if you want to use username in the URL call function getUserByUsername and don't use parse int
   const user = await getUserById(parseInt(userIdFromUrl));
-  console.log(user);
 
   if (!user) {
     context.res.statusCode = 404;
@@ -235,7 +234,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const userProfile = await getUserProfileByUserId(user.id);
-  console.log(userProfile);
 
   return {
     props: {

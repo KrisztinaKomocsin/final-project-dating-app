@@ -212,7 +212,7 @@ export async function getUserProfileByUserId(userId: number) {
     WHERE
       user_id = ${userId}
   `;
-  return userProfile && camelcaseKeys(userProfile);
+  return camelcaseKeys(userProfile);
 }
 
 export async function getGenderedUser(interest: string) {

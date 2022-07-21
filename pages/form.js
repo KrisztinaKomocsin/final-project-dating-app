@@ -89,7 +89,6 @@ export default function Form() {
   const [interest, setInterest] = useState('female');
   const [description, setDescription] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
-  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const router = useRouter();
 
@@ -98,7 +97,7 @@ export default function Form() {
     const formData = new FormData();
     formData.append('file', files[0]);
     formData.append('upload_preset', 'purrMatch');
-    // setLoading(true);
+
     const response = await fetch(
       'https://api.cloudinary.com/v1_1/komkri/upload',
       {
@@ -108,8 +107,6 @@ export default function Form() {
     );
     const file = await response.json();
     setProfilePicture(file.secure_url);
-    console.log('this is profile picture', file.secure_url);
-    setLoading(false);
   };
 
   async function formHandler() {
@@ -266,6 +263,9 @@ export default function Form() {
             <button css={formButton} onClick={() => formHandler()}>
               Submit
             </button>
+            {errors.map((error) => (
+              <span key={`error-${error.message}`}>{error.message} </span>
+            ))}
           </form>
         </div>
       </main>

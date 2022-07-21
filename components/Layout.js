@@ -1,16 +1,3 @@
-import Footer from './Footer';
-import Header from './Header';
-
 export default function Layout(props) {
-  return (
-    <div>
-      <Header user={props.user} refreshUserProfile={props.refreshUserProfile} />
-
-      {props.children}
-
-      <Footer />
-    </div>
-  );
+  return <div>{props.children} </div>;
 }
-
-// {props.children} = the content of the page

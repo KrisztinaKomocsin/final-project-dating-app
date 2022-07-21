@@ -4,20 +4,21 @@ const footerStyles = css`
   font-family: Emilys candy;
   font-size: 12px;
   font-weight: bold;
-  height: 20px;
+  height: 30px;
   position: relative;
 
   p {
     position: absolute;
     bottom: 0;
-    left: 0;
+    right: 0;
+    padding: 10px;
   }
 `;
 
 export default function Footer() {
   return (
     <footer css={footerStyles}>
-      <p>Copyright Krisztina 2022</p>
+      <p>Copyright Purrfect Match! 2022</p>
     </footer>
   );
 }

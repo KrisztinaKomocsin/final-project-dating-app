@@ -2,6 +2,8 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import { useState } from 'react';
 import AuthModal from '../components/AuthModal';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import Layout from '../components/Layout';
 
 const mainPage = css`
@@ -85,6 +87,7 @@ export default function Home() {
 
   return (
     <div>
+      <Header />
       <Layout>
         <Head>
           <title>PurrMatch</title>
@@ -123,6 +126,7 @@ export default function Home() {
           {showModal && <AuthModal setShowModal={setShowModal} />}
         </main>
       </Layout>
+      <Footer />
     </div>
   );
 }

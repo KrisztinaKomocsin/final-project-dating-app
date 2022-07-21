@@ -145,7 +145,7 @@ export async function getServerSideProps(context) {
   const user = await getUserByValidSessionToken(
     context.req.cookies.sessionToken,
   );
-  console.log(user);
+
   if (!user) {
     return {
       redirect: {
@@ -156,15 +156,10 @@ export async function getServerSideProps(context) {
   }
 
   const userProfile = await getUserProfileByUserId(user.id);
-  console.log(userProfile);
 
   const getMatchedUsers = await getGenderedUser(userProfile.interest);
 
-  console.log('matchedUser', getMatchedUsers);
-
   const getLikedMatches = await getLikedUser(user.id);
-
-  console.log('likedMatches', getLikedMatches);
 
   if (!userProfile) {
     return {
