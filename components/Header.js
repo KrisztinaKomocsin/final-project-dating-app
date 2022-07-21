@@ -6,10 +6,11 @@ import logo from '../public/logo.jpg';
 const headerStyle = css`
   width: 100%;
   font-family: Emilys candy;
+  height: 80px;
 
   h1 {
     text-align: center;
-    font-size: 50px;
+    font-size: 25px;
     color: #000;
     text-shadow: 2px 2px 8px #fff;
   }
@@ -22,7 +23,7 @@ const headerStyle = css`
     padding: 10px;
     font-size: 20px;
     background-color: #fff;
-    box-shadow: rgb(0 0 0 / 20%) 0px 0.25rem 1rem;
+    box-shadow: rgb(0 0 0 / 60%) 2px 0.25rem 1rem;
     border-radius: 20px;
     width: 100px;
 
@@ -38,6 +39,11 @@ const loginLink = css`
   display: flex;
   justify-content: flex-end;
   margin-right: 30px;
+
+  h3 {
+    padding-top: 10px;
+    padding-right: 10px;
+  }
 `;
 
 const logoStyle = css`
@@ -72,6 +78,7 @@ export default function Header() {
         Purrfect Match{' '}
       </div>
       <div css={loginLink}>
+        <h3>Have an Account?</h3>
         <Link href="/login">Login</Link>
       </div>
     </header>

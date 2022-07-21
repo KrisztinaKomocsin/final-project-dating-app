@@ -137,6 +137,14 @@ type Props = {
   };
 };
 
+function birth(dob: string) {
+  const birthDate = new Date(dob);
+  const difference = Date.now() - birthDate.getTime();
+  const age = new Date(difference);
+
+  return Math.abs(age.getUTCFullYear() - 1970);
+}
+
 export default function UserDetail(props: Props) {
   return (
     <div>
@@ -152,7 +160,7 @@ export default function UserDetail(props: Props) {
           </h1>
 
           <div css={personalInfo}>
-            <div>{props.user.dateOfBirth}</div>
+            <div>{birth(props.user.dateOfBirth)}</div>
             <div>
               <Image src={catspaw} alt="cat's paw" width="20" height="20" />
             </div>
@@ -216,7 +224,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const userProfile = await getUserProfileByUserId(user.id);
-  console.log(userProfile);
 
   if (!userProfile) {
     return {

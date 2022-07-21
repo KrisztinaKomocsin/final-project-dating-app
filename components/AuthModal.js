@@ -9,13 +9,14 @@ const authForm = css`
   font-size: 15px;
   letter-spacing: 0.5px;
   position: absolute;
-  top: 0px;
+  top: 100px;
   left: 570px;
   max-width: 400px;
   height: 500px;
   background-color: #fff;
   border-radius: 20px;
   background-color: #f8f8ff;
+  text-align: center;
 
   p {
     padding: 20px;

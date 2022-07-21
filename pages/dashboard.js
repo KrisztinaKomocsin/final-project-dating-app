@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Nav from '../components/Nav';
+import cats from '../public/cats.jpg';
 import catspaw from '../public/catspaw.jpg';
 import {
   getGenderedUser,
@@ -74,6 +75,15 @@ const likeButton = css`
   border: none;
 `;
 
+const dashboardImage = css`
+  text-align: center;
+  border-radius: 20px;
+`;
+
+const catImage = css`
+  border-radius: 20px;
+`;
+
 export default function Dashboard(props) {
   return (
     <div>
@@ -123,6 +133,9 @@ export default function Dashboard(props) {
         </div>
         <div css={userDetails}>
           <h1>Are you ready for the purrfect match, {props.user.firstName}?</h1>
+          <div css={dashboardImage}>
+            <Image css={catImage} src={cats} alt="cat paw" layout="fixed" />
+          </div>
         </div>
       </div>
     </div>

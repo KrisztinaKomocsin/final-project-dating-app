@@ -3,12 +3,13 @@ import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Nav from '../../components/Nav';
 import catspaw from '../../public/catspaw.jpg';
 import { getUserById, getUserProfileByUserId } from '../../util/database';
 
 type Props = {
-  userProfile?: {
+  userProfile: {
     id: number;
     username: string;
     userId: number;
@@ -141,7 +142,9 @@ const matchedOtherImageWrapper = css`
 `;
 
 export default function UserDetail(props: Props) {
-  if (!props.user || !props.userProfile) {
+  const router = useRouter();
+
+  if (!props.user) {
     return (
       <>
         <Head>
@@ -179,7 +182,16 @@ export default function UserDetail(props: Props) {
             {props.userProfile.description}
           </div>
           <div>
-            <button css={sendEmailButton}>Send Email</button>
+            <button
+              css={sendEmailButton}
+              onClick={() =>
+                router.push(
+                  `mailto:${props.userProfile.email}?subject=${props.userProfile.firstName}`,
+                )
+              }
+            >
+              Send Email
+            </button>
             <Link href="/dashboard">Back</Link>
           </div>
         </div>
