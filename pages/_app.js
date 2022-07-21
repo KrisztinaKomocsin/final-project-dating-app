@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 export default function App({ Component, pageProps }) {
   const [user, setUser] = useState();
+  console.log(user);
 
   const refreshUserProfile = useCallback(async () => {
     const profileResponse = await fetch('/api/profile');
