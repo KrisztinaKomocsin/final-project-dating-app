@@ -10,7 +10,15 @@ export default async function handler(
 ) {
   // check the method to be POST
   if (req.method === 'POST') {
-    const user = await getUserByValidSessionToken(req.cookies.sessionToken);
+    const token = req.cookies.sessionToken;
+
+    if (!token) {
+      res
+        .status(400)
+        .json({ errors: [{ message: 'No session token passed' }] });
+      return;
+    }
+    const user = await getUserByValidSessionToken(token);
 
     if (!user) {
       res.status(401).json({ errors: [{ message: 'User not found' }] });

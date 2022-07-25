@@ -210,9 +210,18 @@ export default function UserDetail(props: Props) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const user = await getUserByValidSessionToken(
-    context.req.cookies.sessionToken,
-  );
+  const token = context.req.cookies.sessionToken;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: `/`,
+        permanent: false,
+      },
+    };
+  }
+
+  const user = await getUserByValidSessionToken(token);
 
   if (!user) {
     return {
