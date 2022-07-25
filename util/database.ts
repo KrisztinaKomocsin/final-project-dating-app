@@ -164,7 +164,7 @@ export async function getValidSessionByToken(token: string) {
 export async function getUserByValidSessionToken(token: string) {
   if (!token) return undefined;
 
-  const [user] = await sql<[User | undefined]>`
+  const [user] = await sql<[User]>`
   SELECT
     users.id,
     users.username
