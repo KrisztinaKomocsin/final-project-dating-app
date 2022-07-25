@@ -6,11 +6,20 @@
     "cloudinary",
     "Emilys",
     "Fira",
+    "flowtype",
     "mymove",
     "Neue",
+    "PGDATABASE",
+    "PGHOST",
+    "PGPASSWORD",
+    "PGUSERNAME",
+    "postbuild",
     "purrfect",
     "Roboto",
     "Segoe",
-    "sleepingcat"
+    "sleepingcat",
+    "sonarjs",
+    "upleveled",
+    "Wireframing"
   ]
 }

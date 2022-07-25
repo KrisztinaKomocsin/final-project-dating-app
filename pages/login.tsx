@@ -6,8 +6,6 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { LoginResponseBody } from './api/login';
 
-// import {errorStyles} from './register';
-
 const loginWrapper = css`
   display: flex;
   justify-content: space-between;

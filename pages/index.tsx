@@ -90,7 +90,7 @@ export default function Home() {
       <Header />
       <Layout>
         <Head>
-          <title>PurrMatch</title>
+          <title>Purrfect Match</title>
           <meta
             name="description"
             content="Home page of the dating application"

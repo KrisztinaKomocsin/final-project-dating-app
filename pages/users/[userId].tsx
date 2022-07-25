@@ -141,6 +141,14 @@ const matchedOtherImageWrapper = css`
   }
 `;
 
+function birth(dob: string) {
+  const birthDate = new Date(dob);
+  const difference = Date.now() - birthDate.getTime();
+  const age = new Date(difference);
+
+  return Math.abs(age.getUTCFullYear() - 1970);
+}
+
 export default function UserDetail(props: Props) {
   const router = useRouter();
 
@@ -168,7 +176,7 @@ export default function UserDetail(props: Props) {
           <h1>{props.userProfile.firstName}</h1>
 
           <div css={matchedPersonalInfo}>
-            <div>{props.userProfile.dateOfBirth}</div>
+            <div>{birth(props.userProfile.dateOfBirth)}</div>
             <div>
               <Image src={catspaw} alt="cat's paw" width="20" height="20" />
             </div>
@@ -186,7 +194,7 @@ export default function UserDetail(props: Props) {
               css={sendEmailButton}
               onClick={() =>
                 router.push(
-                  `mailto:${props.userProfile.email}?subject=${props.userProfile.firstName}`,
+                  `mailto:${props.userProfile.email}?subject=Message to ${props.userProfile.firstName} from Purrfect Match`,
                 )
               }
             >
