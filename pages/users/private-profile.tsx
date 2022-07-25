@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Nav from '../../components/Nav';
 import catspaw from '../../public/catspaw.jpg';
 import {
@@ -146,6 +147,20 @@ function birth(dob: string) {
 }
 
 export default function UserDetail(props: Props) {
+  const router = useRouter();
+
+  async function deletedUserHandler(userId: number) {
+    const response = await fetch(`/api/users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const deletedUser = await response.json();
+    console.log(deletedUser);
+    await router.push('/');
+  }
+
   return (
     <div>
       <Head>
@@ -175,7 +190,12 @@ export default function UserDetail(props: Props) {
           </div>
           <div css={profileButtons}>
             <button css={updateButton}>Update Profile</button>
-            <button css={deleteButton}>Delete Profile</button>
+            <button
+              css={deleteButton}
+              onClick={() => deletedUserHandler(props.user.userId)}
+            >
+              Delete Profile
+            </button>
           </div>
         </div>
 
@@ -233,7 +253,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const userProfile = await getUserProfileByUserId(user.id);
-
+  console.log(userProfile);
   if (!userProfile) {
     return {
       redirect: {

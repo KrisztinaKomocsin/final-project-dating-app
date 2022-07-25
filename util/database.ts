@@ -206,6 +206,17 @@ export async function deleteExpiredSessions() {
   return sessions.map((session) => camelcaseKeys(session));
 }
 
+export async function deletedUserById(id: number) {
+  const [user] = await sql<[User | undefined]>`
+    DELETE FROM
+      users
+    WHERE
+      id = ${id}
+    RETURNING *
+  `;
+  return user && camelcaseKeys(user);
+}
+
 export async function createUserProfile(
   user_id: number,
   gender: string,
