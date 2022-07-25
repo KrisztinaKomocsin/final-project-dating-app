@@ -83,3 +83,4 @@ A good way to deploy your Next.js app is to use Heroku.
 ### Hosting & Deployment
 
 - heroku-postbuild
+![Landingpage](https://user-images.githubusercontent.com/77744187/180787520-8be75c50-c1dd-4e99-ae64-c60b15ac4f99.png)
